@@ -1,7 +1,16 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, computed, ref } from 'vue';
 
-defineProps(['modelValue']);
+const props = defineProps([
+    'modelValue',
+    "error",
+    "class",
+    "type",
+    "id",
+    "type",
+    "placeholder",
+    "autocomplete",
+]);
 
 defineEmits(['update:modelValue']);
 
@@ -12,8 +21,32 @@ onMounted(() => {
         input.value.focus();
     }
 });
+const Classes = computed(() => {
+  return props.error != null ? "border-red-300" : "border-gray-300";
+});
 </script>
 
 <template>
-    <input class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" ref="input">
+    <input
+        class="focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+        :class="Classes"
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
+        ref="input"
+        :id="id"
+        :type="type"
+        autofocus
+        :placeholder="placeholder"
+        :autocomplete="autocomplete"
+    />
+    <span v-show="error" class="text-red">{{ error }}</span>
 </template>
+
+<style>
+    input {
+        width: 100%;
+    }
+    .text-red {
+        color: red;
+    }
+</style>

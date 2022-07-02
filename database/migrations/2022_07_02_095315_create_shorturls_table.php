@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('shorturls', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug');
-            $table->string('param', 6)->unique()->nullable();
-            $table->longText('description');
-            $table->timestamp('created_at')->useCurrent();
+            $table->char('hash', 6)->nullable();
+            $table->string('url');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('shorturls');
     }
 };

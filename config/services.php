@@ -30,5 +30,11 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-
+    'google' => [
+        'api_key' => env('GOOGLE_API_KEY'),
+        'safe_browsing' => [
+            'client_id' => env('SAFE_BROWSING_CLIENT_ID'),
+            'client_version' => env('SAFE_BROWSING_CLIENT_VERSION')
+        ]
+    ]
 ];

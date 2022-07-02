@@ -16,11 +16,15 @@ $ npm i
 make a copy of .env.example
 $ copy .env.example .env
 $ php artisan key:generate
-put database credentials in .env file
+put database credentials in .env file and set the following parameters with values
+GOOGLE_API_KEY =
+SAFE_BROWSING_CLIENT_ID =
+SAFE_BROWSING_CLIENT_VERSION =
 ```
 
 4. Serving application
 ```
+For Local
 $ php artisan serve
 $ npm run hot
 ```
